@@ -4,15 +4,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import {Provider} from 'react-redux';
-import gamesReducer from './reducers/gamesReducers';
+//import gamesReducer from './reducers/gamesReducers';
+import thunk from 'redux-thunk';
 
 //REDUX SETUP
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from './reducers';
+
+
+// Adding redux-thunk to add multiple components in the store
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancer(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
