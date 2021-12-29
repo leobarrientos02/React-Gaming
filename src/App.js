@@ -6,7 +6,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() =>{
     dispatch(loadGames());
-    console.log(loadGames());
+    //console.log(loadGames());
   })
   return (
     <div className="App">
