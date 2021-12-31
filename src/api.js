@@ -3,6 +3,7 @@ const base_url = "https://api.rawg.io/api/";
 
 
 //Getting the date
+
 const getCurrentMonth = () =>{
     const month  = new Date().getMonth() + 1;
     //console.log(month);
@@ -33,17 +34,17 @@ const currentMonth = getCurrentMonth();
 const currentDay = getCurrentDay();
 const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
-const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+const lastYear = `${currentYear - 1 }-${currentMonth}-${currentDay}`;
+const nextYear = `${currentYear + 1 }-${currentMonth}-${currentDay}`;
 
 // Popular Games
-const popular_games = `games?key=${process.env.REACT_APP_RAWG_API}/dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+const popular_games = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
 
 // Upcoming games
-const upComing_games = `games?key=${process.env.REACT_APP_RAWG_API}/dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
+const upComing_games = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 
 // New Games
-const new_games = `games?key=${process.env.REACT_APP_RAWG_API}/dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
+const new_games = `games?key=${process.env.REACT_APP_RAWG_API}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
 
 
 export const popularGamesURL = () => `${base_url}${popular_games}`;
