@@ -49,3 +49,7 @@ export const popularGamesURL = () => `${base_url}${popular_games}`;
 export const upComingGamesURL = () => `${base_url}${upComing_games}`;
 
 export const newGamesURL = () => `${base_url}${new_games}`;
+
+// GAME DETAILS
+export const gameDetailsURL = (game_id) =>
+  `${base_url}games?key=${process.env.REACT_APP_RAWG_API}&${game_id}`;
