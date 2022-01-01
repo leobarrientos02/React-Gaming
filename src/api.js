@@ -52,4 +52,4 @@ export const newGamesURL = () => `${base_url}${new_games}`;
 
 // GAME DETAILS
 export const gameDetailsURL = (game_id) =>
-  `${base_url}games?key=${process.env.REACT_APP_RAWG_API}&${game_id}`;
+  `${base_url}games/${game_id}?&key=${process.env.REACT_APP_RAWG_API}`;
