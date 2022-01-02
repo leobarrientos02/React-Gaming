@@ -8,4 +8,5 @@ html::-webkit-scrollbar{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    transition: all ease 1s;
 }
