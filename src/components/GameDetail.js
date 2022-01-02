@@ -14,8 +14,10 @@ const GameDetail = () =>{
         }
     };    
     // DATA
-    const  {screen, game } = useSelector((state) => state.detail);
+    const  {screen, game, isLoading } = useSelector((state) => state.detail);
     return(
+        <>
+        {!isLoading && (
         <CardShadow className="shadow" onClick={exitDetailHander}>
             <Detail>
                 <Stats>
@@ -90,6 +92,8 @@ const GameDetail = () =>{
 
             </Detail>
         </CardShadow>
+        )}
+        </>
     );
 };
 
