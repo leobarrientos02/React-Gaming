@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 // REDUx
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+// IMAGE SIZE REDUCER
+import { smallImage } from '../util';
 
 const GameDetail = () =>{
     const navigate = useNavigate();
@@ -38,14 +40,14 @@ const GameDetail = () =>{
                     </Info>
                 </Stats>
                 <Media>
-                    <img src={game.background_image} alt={game.background_image} />
+                    <img src={smallImage(game.background_image, 1280)} alt={game.background_image} />
                 </Media>
                 <Description>
                     <p>{game.description_raw}</p>
                 </Description>
                 <div className="gallery">
                     {screen.results.map((image) => (
-                        <img src={image.image} key={image.id} alt={screen.image} />
+                        <img src={smallImage(image.image, 1280)} key={image.id} alt={screen.image} />
                     ))}
                 </div>
                 <Info2>
