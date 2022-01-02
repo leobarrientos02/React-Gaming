@@ -6,10 +6,17 @@ import { motion } from 'framer-motion';
 import {useSelector} from 'react-redux';
 
 const GameDetail = () =>{
+    //Exit Detail
+    const exitDetailHander = (e) => {
+        const element = e.target;
+        if (element.classList.contains("shadow")) {
+            document.body.style.overflow = "auto";
+        }
+    };    
     // DATA
     const  {screen, game } = useSelector((state) => state.detail);
     return(
-        <CardShadow>
+        <CardShadow className="shadow" onClick={exitDetailHander}>
             <Detail>
                 <Stats>
                     <div className="rating">
@@ -36,7 +43,7 @@ const GameDetail = () =>{
                         <img src={screen.image} key={screen.id} alt={screen.image} />
                     ))}
                 </div>
-                <Info2>
+                {/* <Info2>
                     <h4>ESRB Rating</h4>
                     <div className="esrb">
                         <p>
@@ -79,7 +86,7 @@ const GameDetail = () =>{
                         ))}
                     </Tags>                    
                     
-                </Info2>
+                </Info2> */}
 
             </Detail>
         </CardShadow>
