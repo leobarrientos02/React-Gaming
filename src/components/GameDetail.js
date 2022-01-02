@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // REDUx
 import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 const GameDetail = () =>{
+    const navigate = useNavigate();
     //Exit Detail
     const exitDetailHander = (e) => {
         const element = e.target;
         if (element.classList.contains("shadow")) {
             document.body.style.overflow = "auto";
+            navigate('/');
         }
     };    
     // DATA
@@ -41,46 +44,54 @@ const GameDetail = () =>{
                     <p>{game.description_raw}</p>
                 </Description>
                 <div className="gallery">
-                    {screen.results.map((screen) => (
-                        <img src={screen.image} key={screen.id} alt={screen.image} />
+                    {screen.results.map((image) => (
+                        <img src={image.image} key={image.id} alt={screen.image} />
                     ))}
                 </div>
-                {/* <Info2>
-                    <h4>ESRB Rating</h4>
+                <Info2>
+                    {/* <h4>ESRB Rating</h4>
                     <div className="esrb">
-                        <p>
-                            {game.esrb_rating.name}
-                        </p>
-                    </div>
+                            if(game.esrb_rating.name == "null"){
+                                <p>None</p>
+                            }else{
+                                <p>{game.esrb_rating.name}</p>
+                            }
+                    </div> */}
                     <h4>Genres</h4>
                     <div className="genres">
                         {game.genres.map((genre) => (
-                            <p key={genre.id}>
-                                {genre.name}
-                            </p>
+                            <div className="genre" key={genre.id}>
+                                <p>
+                                    {genre.name}
+                                </p>
+                            </div>
                         ))}
                     </div>
                     <h4>Developers</h4>
                     <div className="developers">
                         {game.developers.map((developer) => (
-                            <p key={developer.id}>
-                                {developer.name}
-                            </p>
+                            <div className="developer" key={developer.id}>
+                                <p>
+                                    {developer.name}
+                                </p>
+                            </div>
                         ))}
                     </div>
                     <h4>Publishers</h4>
                     <div className="publishers">
                         {game.publishers.map((publisher) => (
-                            <p key={publisher.id}>
-                                {publisher.name}
-                            </p>
+                            <div className="publisher" key={publisher.id}>
+                                <p>
+                                    {publisher.name}
+                                </p>
+                            </div>
                         ))}
                     </div>
                     <h4>Tags</h4>
                     <Tags>
                         {game.tags.map((tag) => (
-                            <Tag>
-                                <p key={tag.id}>
+                            <Tag key={tag.id}>
+                                <p>
                                     {tag.name}
                                 </p>
                             </Tag>
@@ -88,7 +99,7 @@ const GameDetail = () =>{
                         ))}
                     </Tags>                    
                     
-                </Info2> */}
+                </Info2>
 
             </Detail>
         </CardShadow>

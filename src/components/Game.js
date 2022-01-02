@@ -38,12 +38,6 @@ const StyledGame = styled(motion.div)`
     height: 40vh;
     object-fit: cover;
     border-radius: 4px;
-    transition: all ease 1s;
-    &:hover{
-      /* height: 40.5vh;
-      width: 102%; */
-      transform: scale(1.05);
-    }
   }
 `;
 
