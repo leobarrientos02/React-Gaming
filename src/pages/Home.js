@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import {motion} from 'framer-motion';
 // Components
 import Game from "../components/Game";
-
+import GameDetail from '../components/GameDetail';
 const Home = () => {
     const dispatch = useDispatch();
     useEffect(() =>{
@@ -19,6 +19,7 @@ const Home = () => {
     const { popular, newGames, upComing } = useSelector((state) => state.games);  
     return(
         <GameList>
+            <GameDetail />
             <h2>Upcoming Games</h2>
                 <Games>
                     {upComing.map(game => (

@@ -8,10 +8,13 @@ const GlobalStyles = createGlobalStyle`
     }
     html{
         &::-webkit-scrollbar{
-          width: 0.8rem;  
+            width: 0.8rem;  
         }
         &::-webkit-scrollbar-thumb{
-          background-color: darkgrey;
+            background-color: darkgrey;
+        }
+        &::-webkit-scrollbar-track {
+            background: white;
         }
     }
     body{
