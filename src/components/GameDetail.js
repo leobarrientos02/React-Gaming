@@ -11,31 +11,75 @@ const GameDetail = () =>{
     return(
         <CardShadow>
             <Detail>
-                <div className="stats">
+                <Stats>
                     <div className="rating">
                         <h3>{game.name}</h3>
                         <p>Rating: {game.rating}</p>
                     </div>
-                    <div className="info">
+                    <Info>
                         <h3>Platforms</h3>
-                        <div className="platforms">
+                        <Platforms>
                             {game.platforms.map((data) => (
                                 <h3 key={data.platform.id}>{data.platform.name}</h3>
                             ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="media">
+                        </Platforms>
+                    </Info>
+                </Stats>
+                <Media>
                     <img src={game.background_image} alt={game.background_image} />
-                </div>
-                <div className="description">
+                </Media>
+                <Description>
                     <p>{game.description_raw}</p>
-                </div>
+                </Description>
                 <div className="gallery">
                     {screen.results.map((screen) => (
                         <img src={screen.image} key={screen.id} alt={screen.image} />
                     ))}
                 </div>
+                <Info2>
+                    <h4>ESRB Rating</h4>
+                    <div className="esrb">
+                        <p>
+                            {game.esrb_rating.name}
+                        </p>
+                    </div>
+                    <h4>Genres</h4>
+                    <div className="genres">
+                        {game.genres.map((genre) => (
+                            <p key={genre.id}>
+                                {genre.name}
+                            </p>
+                        ))}
+                    </div>
+                    <h4>Developers</h4>
+                    <div className="developers">
+                        {game.developers.map((developer) => (
+                            <p key={developer.id}>
+                                {developer.name}
+                            </p>
+                        ))}
+                    </div>
+                    <h4>Publishers</h4>
+                    <div className="publishers">
+                        {game.publishers.map((publisher) => (
+                            <p key={publisher.id}>
+                                {publisher.name}
+                            </p>
+                        ))}
+                    </div>
+                    <h4>Tags</h4>
+                    <Tags>
+                        {game.tags.map((tag) => (
+                            <Tag>
+                                <p key={tag.id}>
+                                    {tag.name}
+                                </p>
+                            </Tag>
+    
+                        ))}
+                    </Tags>                    
+                    
+                </Info2>
 
             </Detail>
         </CardShadow>
@@ -79,4 +123,61 @@ const Detail = styled(motion.div)`
   }
 `;
 
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
+`;
+
+const Info = styled(motion.div)`
+  text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    margin-left: 3rem;
+  }    
+`;
+
+const Media = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+  }
+`;
+
+const Description = styled(motion.div)`
+  margin: 5rem 0rem;
+`;
+
+const Info2 = styled(motion.div)`
+    h4{
+        margin: 1rem 0rem;
+    }
+`;
+const Tags = styled(motion.div)`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+`;
+
+const Tag = styled(motion.div)`
+    p{
+        font-size: 1rem;
+        padding: .25rem .5rem;
+        background: #696969;
+        color: white;
+        border-radius: 10px;
+        margin: .5rem .75rem;
+    }
+`;
 export default GameDetail;
