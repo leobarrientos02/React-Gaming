@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gameAction";
 // Styling and animations
 import styled from 'styled-components';
-
 import {motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 
 // Components
@@ -12,6 +11,8 @@ import Game from "../components/Game";
 import GameDetail from '../components/GameDetail';
 
 import {useLocation} from 'react-router-dom';
+
+import { fadeIn } from '../animations';
 
 const Home = () => {
 
@@ -29,7 +30,7 @@ const Home = () => {
     // Get the data back from the State
     const { popular, newGames, upComing, searched } = useSelector((state) => state.games);  
     return(
-        <GameList>
+        <GameList variants={fadeIn} initial="hidden" animate="show">
             <AnimateSharedLayout type="crossfade"  >
             <AnimatePresence>
                 {pathId && GameDetail.name && <GameDetail pathId={pathId} /> }
