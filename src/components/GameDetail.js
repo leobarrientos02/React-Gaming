@@ -85,7 +85,7 @@ const GameDetail = ({ pathId }) =>{
                                 renderStarIconHalf={1} 
                                 editing={false}
                                 emptyStarColor="#696969"
-                                starColor="#ff0000"
+                                starColor="#ff7676"
                             />
                         </Stars>
                     </div>

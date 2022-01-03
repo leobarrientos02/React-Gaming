@@ -27,16 +27,34 @@ const Home = () => {
       //console.log(loadGames());
     }, [dispatch]);
     // Get the data back from the State
-    const { popular, newGames, upComing } = useSelector((state) => state.games);  
+    const { popular, newGames, upComing, searched } = useSelector((state) => state.games);  
     return(
         <GameList>
             <AnimateSharedLayout type="crossfade"  >
             <AnimatePresence>
                 {pathId && GameDetail.name && <GameDetail pathId={pathId} /> }
             </AnimatePresence>
+            { searched.length ?  (
+            <div className="searched">
+                <h2>Searched Games</h2>
+                    <Games>
+                        {searched.map((game) => (
+                            <Game 
+                                name={game.name} 
+                                released={game.released} 
+                                id={game.id} 
+                                //rating={game.rating}
+                                image={game.background_image} 
+                                key={game.id}
+                            />
+                        ))}                
+                    </Games>
+            </div>
+            ) : "" }
+
             <h2>Upcoming Games</h2>
                 <Games>
-                    {upComing.map(game => (
+                    {upComing.map((game) => (
                         <Game 
                             name={game.name} 
                             released={game.released} 
@@ -49,7 +67,7 @@ const Home = () => {
                 </Games>
             <h2>Popular Games</h2>
                 <Games>
-                    {popular.map(game => (
+                    {popular.map((game) => (
                         <Game 
                             name={game.name} 
                             released={game.released} 
@@ -62,7 +80,7 @@ const Home = () => {
                 </Games>
             <h2>New Games</h2>    
                 <Games>
-                    {newGames.map(game => (
+                    {newGames.map((game) => (
                         <Game 
                             name={game.name} 
                             released={game.released} 
