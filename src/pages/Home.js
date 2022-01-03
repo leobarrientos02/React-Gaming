@@ -5,7 +5,8 @@ import { loadGames } from "../actions/gameAction";
 // Styling and animations
 import styled from 'styled-components';
 
-import {motion} from 'framer-motion';
+import {motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+
 // Components
 import Game from "../components/Game";
 import GameDetail from '../components/GameDetail';
@@ -29,8 +30,10 @@ const Home = () => {
     const { popular, newGames, upComing } = useSelector((state) => state.games);  
     return(
         <GameList>
-
-            {pathId && <GameDetail /> }
+            <AnimateSharedLayout type="crossfade"  >
+            <AnimatePresence>
+                {pathId && GameDetail.name && <GameDetail pathId={pathId} /> }
+            </AnimatePresence>
             <h2>Upcoming Games</h2>
                 <Games>
                     {upComing.map(game => (
@@ -69,7 +72,8 @@ const Home = () => {
                             key={game.id}
                         />
                     ))}                
-                </Games>                                
+                </Games>
+                </AnimateSharedLayout>                                
         </GameList>
     );
 };
