@@ -16,6 +16,8 @@ import nintendo from '../img/nintendo.svg';
 import apple from '../img/apple.svg';
 import gamepad from '../img/gamepad.svg';
 
+import StarRatingComponent from 'react-star-rating-component';
+
 const GameDetail = ({ pathId }) =>{
     const navigate = useNavigate();
     //Exit Detail
@@ -25,7 +27,42 @@ const GameDetail = ({ pathId }) =>{
             document.body.style.overflow = "auto";
             navigate('/');
         }
-    };    
+    };
+    
+    // GET PLATFORM IMAGES
+    const getPlatform = (platform) =>{
+        if (platform.includes("PlayStation")) {
+            return playstation;
+          } else if (platform.includes("Xbox")) {
+            return xbox;
+          } else if (platform === "PC") {
+            return steam;
+          } else if (platform === "Nintendo Switch") {
+            return nintendo;
+          } else if (platform.includes("OS")) {
+            return apple;
+          } else {
+            return gamepad;
+          }
+    }
+    // GET PLATFORM URL
+    const getPlatformURL = (platform) =>{
+        if (platform.includes("PlayStation")) {
+            return "https://www.playstation.com/en-us/";
+          } else if (platform.includes("Xbox")) {
+            return "https://www.xbox.com/en-US";
+          } else if (platform === "PC") {
+            return "https://store.steampowered.com/";
+          } else if (platform === "Nintendo Switch") {
+            return "https://www.nintendo.com/";
+          } else if (platform.includes("OS")) {
+            return "https://www.apple.com/";
+          } else {
+            return "https://www.omfgdogs.com/#";
+          }
+    }    
+
+
     // DATA
     const  {screen, game, isLoading } = useSelector((state) => state.detail);
     return(
@@ -34,21 +71,31 @@ const GameDetail = ({ pathId }) =>{
         <CardShadow 
             className="shadow" 
             onClick={exitDetailHander}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
         >
             <Detail layoutId={pathId}>
                 <Stats>
                     <div className="rating">
                         <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
                         <p>Rating: {game.rating}</p>
+                        <Stars>
+                            <StarRatingComponent
+                                name="Rating"
+                                value={game.rating}
+                                starCount={5}
+                                renderStarIconHalf={1} 
+                                editing={false}
+                                emptyStarColor="#696969"
+                                starColor="#ff0000"
+                            />
+                        </Stars>
                     </div>
                     <Info>
                         <h3>Platforms</h3>
                         <Platforms>
                             {game.platforms.map((data) => (
-                                <h3 key={data.platform.id}>{data.platform.name}</h3>
+                                <a href={getPlatformURL(data.platform.name)} target="_blank" rel="noreferrer">
+                                    <img key={data.platform.id} src={getPlatform(data.platform.name)} alt={data.platform.name} title={data.platform.name} />
+                                </a>
                             ))}
                         </Platforms>
                     </Info>
@@ -125,6 +172,7 @@ const GameDetail = ({ pathId }) =>{
     );
 };
 
+
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
@@ -172,17 +220,15 @@ const Stats = styled(motion.div)`
     display: inline;
   }
 `;
-
 const Info = styled(motion.div)`
   text-align: center;
 `;
-
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
     margin-left: 3rem;
-  }    
+  }
 `;
 
 const Media = styled(motion.div)`
@@ -195,6 +241,7 @@ const Media = styled(motion.div)`
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
+
 
 const Info2 = styled(motion.div)`
     h4{
@@ -219,4 +266,9 @@ const Tag = styled(motion.div)`
         margin: .5rem .75rem;
     }
 `;
+
+const Stars = styled(motion.div)`
+    font-size: 2rem;
+`;
+
 export default GameDetail;
