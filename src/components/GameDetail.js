@@ -8,6 +8,14 @@ import {useNavigate} from 'react-router-dom';
 // IMAGE SIZE REDUCER
 import { smallImage } from '../util';
 
+// IMPORTING IMAGES
+import playstation from '../img/playstation.svg';
+import steam from '../img/steam.svg';
+import xbox from '../img/xbox.svg';
+import nintendo from '../img/nintendo.svg';
+import apple from '../img/apple.svg';
+import gamepad from '../img/gamepad.svg';
+
 const GameDetail = ({ pathId }) =>{
     const navigate = useNavigate();
     //Exit Detail
@@ -125,7 +133,7 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 5;
 
   &::-webkit-scrollbar {
     width: 0.5rem;
