@@ -7,12 +7,10 @@ export const fadeIn = {
       transition: {
         duration: 0.75,
       },
-    },  
-    exit: {
+      exit: {
         opacity: 0,
-        transition: { 
-            duration: 0.75
-        },
+        transition: { duration: 0.75 },
+      },
     },
 };
 
@@ -27,10 +25,10 @@ export const popup = {
       transition: {
         duration: 0.6,
       },
-    },  
-    exit: {
+      exit: {
         opacity: 0,
         transition: { duration: 0.6 },
+      },
     },
 };
   
