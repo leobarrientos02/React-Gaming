@@ -35,6 +35,7 @@ const Nav = () =>{
 
     return(
         <StyledNav variants={fadeIn} initial="hidden" animate="show">
+
             <Logo onClick={clearSearched}>
                 <img src={logo} alt="logo"/>
                 <h1>Inferno</h1>
