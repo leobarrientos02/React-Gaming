@@ -1,51 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // ANIMATION
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { motion } from "framer-motion";
 import logo from "../img/logo.svg";
 
 // REDUX AND ROUTES
-import {fetchSearch} from '../actions/gameAction';
-import { useDispatch } from 'react-redux';
+import { fetchSearch } from "../actions/gameAction";
+import { useDispatch } from "react-redux";
 
-import { fadeIn } from '../animations';
+import { fadeIn } from "../animations";
 
-const Nav = () =>{
+const Nav = () => {
+  // SEARCH FUNCTIONAlITY
+  const dispatch = useDispatch();
+  const [textInput, setTextInput] = useState("");
 
-    // SEARCH FUNCTIONAlITY
-    const dispatch = useDispatch();
-    const [textInput, setTextInput] = useState("");
+  const inputHandler = (e) => {
+    setTextInput(e.target.value);
+  };
 
-    const inputHandler = (e) =>{
-        setTextInput(e.target.value);
-    }
+  const submitSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearch(textInput));
+    setTextInput("");
+  };
 
-    const submitSearch = (e) => {
-        e.preventDefault();
-        dispatch(fetchSearch(textInput));
-        setTextInput("");
-    }
+  // CLEAR SEARCH
+  const clearSearched = () => {
+    dispatch({
+      type: "CLEAR_SEARCHED",
+    });
+  };
 
-    // CLEAR SEARCH
-    const clearSearched = () =>{
-        dispatch({
-            type: "CLEAR_SEARCHED"
-        });
-    }
-
-    return(
-        <StyledNav variants={fadeIn} initial="hidden" animate="show">
-
-            <Logo onClick={clearSearched}>
-                <img src={logo} alt="logo"/>
-                <h1>Inferno</h1>
-            </Logo>
-            <form className="search">
-                <input value={textInput} onChange={inputHandler} type="text" />
-                <button onClick={submitSearch} type="submit">Search</button>
-            </form>
-        </StyledNav>
-    );
+  return (
+    <StyledNav variants={fadeIn} initial="hidden" animate="show">
+      <Logo onClick={clearSearched}>
+        <img src={logo} alt="logo" />
+        <h1>Inferno</h1>
+      </Logo>
+      <form className="search">
+        <input value={textInput} onChange={inputHandler} type="text" />
+        <button onClick={submitSearch} type="submit">
+          Search
+        </button>
+      </form>
+    </StyledNav>
+  );
 };
 
 const StyledNav = styled(motion.div)`
@@ -57,7 +57,7 @@ const StyledNav = styled(motion.div)`
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
   }
   button {
     font-size: 1.5rem;
@@ -66,6 +66,7 @@ const StyledNav = styled(motion.div)`
     cursor: pointer;
     background: #ff7676;
     color: white;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
   }
 `;
 
@@ -79,6 +80,5 @@ const Logo = styled(motion.div)`
     width: 2rem;
   }
 `;
-
 
 export default Nav;
